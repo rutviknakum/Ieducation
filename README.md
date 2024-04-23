@@ -1,8 +1,7 @@
-Certainly! Here's a simplified version of a README file for your GitHub repository "iEducation College Management System," a Flutter application for both students and administrators:
 
 ---
 
-# iEducation College Management System
+# iEducation 
 
 ## Overview
 
