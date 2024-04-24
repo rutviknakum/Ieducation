@@ -66,7 +66,29 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: appbar(context, title: 'Result'),
+      appBar: AppBar(
+        title: const Padding(
+          padding: EdgeInsets.only(left: 55),
+          child: Text(
+            "Result",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        actions: [
+          IconButton(
+              onPressed: (() {
+                AppNavigation.shared.moveToAddResultScreen();
+              }),
+              icon: const Padding(
+                padding: EdgeInsets.only(right: 25),
+                child: Icon(
+                  Icons.person_add,
+                  size: 38,
+                  color: Colors.white,
+                ),
+              ))
+        ],
+      ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : resultDataList.isEmpty
@@ -195,21 +217,6 @@ class _ResultScreenState extends State<ResultScreen> {
                     ),
                   ),
                 ),
-      floatingActionButton: floatingActionButton(
-        onPressed: () async {
-          AppNavigation.shared.moveToAddResultScreen();
-          setState(() {});
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => const AddResultScreen(),
-          //   ),
-          // ).whenComplete(() async {
-          //   await getData();
-          //   setState(() {});
-          // });
-        },
-      ),
     );
   }
 }

@@ -4,8 +4,6 @@ import 'dart:ui';
 
 import 'package:admin_appppppp/Network/database_api.dart';
 import 'package:admin_appppppp/Network/database_class.dart';
-import 'package:admin_appppppp/common/appbar.dart';
-import 'package:admin_appppppp/common/floating_actin_button.dart';
 import 'package:admin_appppppp/common/pdf_viewer/pdf_viewer_dialog.dart';
 import 'package:admin_appppppp/constant.dart';
 import 'package:admin_appppppp/navigation/app_navigation.dart';
@@ -43,7 +41,7 @@ class _MaterialScreenState extends State<MaterialScreen> {
       setState(() {});
     });
 
-    FlutterDownloader.registerCallback(downloadCallback as DownloadCallback);
+    FlutterDownloader.registerCallback(downloadCallback);
   }
 
   @override
@@ -63,7 +61,29 @@ class _MaterialScreenState extends State<MaterialScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: appbar(context, title: 'Materials'),
+      appBar: AppBar(
+        title: const Padding(
+          padding: EdgeInsets.only(left: 55),
+          child: Text(
+            "Matrials",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        actions: [
+          IconButton(
+              onPressed: (() {
+                AppNavigation.shared.moveToAddMaterialScreen();
+              }),
+              icon: const Padding(
+                padding: EdgeInsets.only(right: 25),
+                child: Icon(
+                  Icons.person_add,
+                  size: 38,
+                  color: Colors.white,
+                ),
+              ))
+        ],
+      ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : materialsDataList.isEmpty
@@ -204,22 +224,6 @@ class _MaterialScreenState extends State<MaterialScreen> {
                     ),
                   ),
                 ),
-      floatingActionButton: floatingActionButton(
-        onPressed: () {
-          AppNavigation.shared.moveToAddMaterialScreen();
-
-          setState(() {});
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => const AddMaterialScreen(),
-          //   ),
-          // ).whenComplete(() {
-          //   getData();
-          //   setState(() {});
-          // });
-        },
-      ),
     );
   }
 }

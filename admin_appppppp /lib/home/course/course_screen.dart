@@ -6,8 +6,6 @@ import 'dart:ui';
 
 import 'package:admin_appppppp/Network/database_api.dart';
 import 'package:admin_appppppp/Network/database_class.dart';
-import 'package:admin_appppppp/common/appbar.dart';
-import 'package:admin_appppppp/common/floating_actin_button.dart';
 import 'package:admin_appppppp/common/pdf_viewer/pdf_viewer_dialog.dart';
 import 'package:admin_appppppp/constant.dart';
 import 'package:admin_appppppp/navigation/app_navigation.dart';
@@ -64,7 +62,29 @@ class _CourseScreenState extends State<CourseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbar(context, title: 'Course'),
+      appBar: AppBar(
+        title: const Padding(
+          padding: EdgeInsets.only(left: 55),
+          child: Text(
+            "Course",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+        actions: [
+          IconButton(
+              onPressed: (() {
+                AppNavigation.shared.moveToAddCourseScreen();
+              }),
+              icon: const Padding(
+                padding: EdgeInsets.only(right: 25),
+                child: Icon(
+                  Icons.person_add,
+                  size: 38,
+                  color: Colors.white,
+                ),
+              ))
+        ],
+      ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : courseDataList.isEmpty
@@ -193,22 +213,6 @@ class _CourseScreenState extends State<CourseScreen> {
                     ),
                   ),
                 ),
-      floatingActionButton: floatingActionButton(
-        onPressed: () {
-          AppNavigation.shared.moveToAddCourseScreen();
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (context) => const AddCourseScreen(),
-          //   ),
-          // ).whenComplete(
-          //   () {
-          //     getData();
-          //     setState(() {});
-          //   },
-          // );
-        },
-      ),
     );
   }
 }
