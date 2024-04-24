@@ -25,7 +25,7 @@ The iEducation College Management System is a Flutter application developed to s
 
 - Flutter
 - Dart
-- Firebase (or other backend services)
+- Firebase 
 
 ## Getting Started
 
